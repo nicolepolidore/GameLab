@@ -2,26 +2,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class PlayerPick: MonoBehaviour
+public class PlayerPick : MonoBehaviour
 {
 
-   
+
     public Text countText;
     public Text gameOverText;
-  
+    public int sceneNum;
+   
 
-    
-    private int count;
+    int count;
 
     void Start()
     {
         count = 0;
         SetCountText();
-       
+
     }
 
-   
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -31,7 +32,7 @@ public class PlayerPick: MonoBehaviour
             count = count + 1;
             SetCountText();
         }
-        if(other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             gameOverText.text = "GAME OVER!";
         }
@@ -40,6 +41,14 @@ public class PlayerPick: MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-       
+        if (count == 10)
+        {
+
+
+            SceneManager.LoadScene(sceneNum);
+            
+
+        }
+
     }
 }
