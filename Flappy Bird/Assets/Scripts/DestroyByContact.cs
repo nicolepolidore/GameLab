@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DestroyByContact : MonoBehaviour
 {
 
+    public Text  gameOverText;
    
     void Start()
     {
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.tag == "Player")
+        if (collider.tag == "Pipe")
         {
-            Destroy(other.gameObject);
+            SceneManager.LoadScene("GameOverandRestart");
            
         }
     }
